@@ -9,7 +9,9 @@ from dropconfig import *
 
 
 def menu():
-    print('''\n
+    print('''
+Pick one. 
+
     1. Load proxies
     2. Get captcha balance
     3. Quit
@@ -45,6 +47,7 @@ def load_proxies():
     try:
         with open('proxies.txt') as proxiesFile:
             proxies = proxiesFile.read().splitlines()
+        print('{} proxies succesfully loaded.'.format(len(proxies)))
     except IOError:
         print('Error importing proxy file.')
         exit()
