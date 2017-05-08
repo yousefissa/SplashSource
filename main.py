@@ -1,32 +1,30 @@
 import random
 import requests
-import selenium 
+import selenium
 import time
-import threading 
+import threading
 from dropconfig import *
 
 # main menu
+
+
 def menu():
-	    print('''
-Please read the readme on Github before using this bot.
-
-This is a bot that allows you to do a few things: 
-
-	1. Load proxies
-	2. Get captcha balance.
-    3. Quit. 
+    print('''\n
+    1. Load proxies
+    2. Get captcha balance
+    3. Quit
     ''')
 
-	userChoice = input('Enter the action that you want to take: ')
-	choices {
-	1: load_proxies,
-	2: captcha_balance,
-	3: quit 
-	}
+    userChoice = input('Enter the action that you want to take: ')
+    choices = {
+    1: load_proxies,
+    2: captcha_balance,
+    3: quit
+    }
 
-	try:
-		choices[int(userChoice)]()
-	except:
+    try:
+        choices[int(userChoice)]()
+    except:
         print('Input not recognized. You probably did not enter a number. \n'
               'The program will restart. \n')
         menu()
@@ -36,20 +34,20 @@ This is a bot that allows you to do a few things:
 
 # displays 2captcha balance
 def captcha_balance():
-	if captcha_api == '':
-		print('No captcha token present. Check your config file.')
-	else:
-		balance = requests.get("http://2captcha.com/res.php?key={}&action=getbalance".format(captcha_api)).text
-		print('Your 2captcha balance is, ', balance)
+    if captcha_api == '':
+        print('No captcha token present. Check your config file.')
+    else:
+        balance = requests.get("http://2captcha.com/res.php?key={}&action=getbalance".format(captcha_api)).text
+        print('\nYour 2captcha balance is {}.\n'.format(balance))
 
 # function to load user proxies.
 def load_proxies():
-	try:
-		with open('proxies.txt') as proxiesFile:
-			proxies = proxiesFile.read().splitlines()
-	except IOError:
-		print('Error importing proxy file.')
-		exit()
+    try:
+        with open('proxies.txt') as proxiesFile:
+            proxies = proxiesFile.read().splitlines()
+    except IOError:
+        print('Error importing proxy file.')
+        exit()
 
 # asks the user about continuing
 def Continue():
@@ -64,3 +62,8 @@ def Continue():
         quit()
     else:
         print('\nInput not recognized. Try again.')
+
+# run the code
+if __name__ == "__main__":
+    print('Please read the readme on Github before using this bot.')
+    menu()
