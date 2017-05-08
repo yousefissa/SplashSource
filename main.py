@@ -36,10 +36,10 @@ This is a bot that allows you to do a few things:
 
 # displays 2captcha balance
 def captcha_balance():
-	if api_token == '':
+	if captcha_api == '':
 		print('No captcha token present. Check your config file.')
 	else:
-		balance = requests.get("http://2captcha.com/res.php?key={}&action=getbalance".format(api_token)).text
+		balance = requests.get("http://2captcha.com/res.php?key={}&action=getbalance".format(captcha_api)).text
 		print('Your 2captcha balance is, ', balance)
 
 # function to load user proxies.
