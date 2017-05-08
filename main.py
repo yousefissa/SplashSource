@@ -49,3 +49,17 @@ try:
 except IOError:
 	print('Error importing proxy file.')
 	exit()
+
+# asks the user about continuing
+def Continue():
+    # asks the user if they want to keep calculating, converts to lower case
+    keep_going = input('Do you want to keep going? Enter yes or no. \n'
+                       '').lower()
+    # evaluates user's response.
+    if keep_going == 'yes':
+        menu()
+    elif keep_going == 'no':
+        print('\nThanks for using the SplashForce!')
+        quit()
+    else:
+        print('\nInput not recognized. Try again.')
