@@ -35,20 +35,21 @@ This is a bot that allows you to do a few things:
 
 
 # displays 2captcha balance
-def captcha_balance(api_token):
+def captcha_balance():
 	if api_token == '':
 		print('No captcha token present. Check your config file.')
 	else:
 		balance = requests.get("http://2captcha.com/res.php?key={}&action=getbalance".format(api_token)).text
 		print('Your 2captcha balance is, ', balance)
 
-# imports proxies
-try:
-	with open('proxies.txt') as proxiesFile:
-		proxies = proxiesFile.read().splitlines()
-except IOError:
-	print('Error importing proxy file.')
-	exit()
+# function to load user proxies.
+def load_proxies():
+	try:
+		with open('proxies.txt') as proxiesFile:
+			proxies = proxiesFile.read().splitlines()
+	except IOError:
+		print('Error importing proxy file.')
+		exit()
 
 # asks the user about continuing
 def Continue():
